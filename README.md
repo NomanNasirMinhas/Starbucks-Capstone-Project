@@ -12,6 +12,18 @@ The data is contained in three files:
 - profile.json — demographic data for each customer
 - transcript.json — records for transactions, offers received, offers viewed, and offers completed
 
+## Problem Statement
+In this project the problem which we will address is to check effectiveness of offers launched by Starbucks and analyze Customer Profiles to recommend customer engagement techniques.
+
+## Method to solve problem
+We will clean, transform and vizualize data to understand how customers have reacted to our offers and which category of customers we need to focus upon. We will NOT use any machine learning model to solve this
+
+## Metrics
+We will use following metrics to assess our solutions. We have chosen these metrics because this will give us direct insights into effectiveness of our offers and different customer groups
+- People Engagement with Offers(i.e Offer Recieved, Offer Viewed and Offer Completed)
+- Number of Customers in Age and Income Group
+- Number of Customers in a year
+
 ## Approach
 We adopted following steps to get our insights.
 - Importing required libraries and reading json files.
