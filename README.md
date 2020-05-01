@@ -13,25 +13,46 @@ The data is contained in three files:
 - transcript.json — records for transactions, offers received, offers viewed, and offers completed
 
 ## Problem Statement
-In this project the problem which we will address is to check effectiveness of offers launched by Starbucks and analyze Customer Profiles to recommend customer engagement techniques.
+In this project the problem which we will address is to check effectiveness of offers launched by Starbucks and analyze Customer Profiles to recommend offers for a customer.
 
 ## Method to solve problem
-We will clean, transform and vizualize data to understand how customers have reacted to our offers and which category of customers we need to focus upon. We will NOT use any machine learning model to solve this
-
-## Metrics
-We will use following metrics to assess our solutions. We have chosen these metrics because this will give us direct insights into effectiveness of our offers and different customer groups
-- People Engagement with Offers(i.e Offer Recieved, Offer Viewed and Offer Completed)
-- Number of Customers in Age and Income Group
-- Number of Customers in a year
+We will clean, transform and visualize data to understand how customers have reacted to our offers and which category of customers we need to focus upon. To recommend offers for a customer we will create user matrix and the use FunkSVD to make recommendations.
 
 ## Approach
 We adopted following steps to get our insights.
-- Importing required libraries and reading json files.
-- Exploring all three files using .head() and .describe() methods.
-- Data Cleaning
-- Exploring Cleaned Data by .head() and .describe() methods
-- Transforming Data by
-- Plotting Data
+1. Importing required libraries and reading json files.
+2. Exploring all three files using .head() and .describe() methods.
+3. Data Cleaning
+- Clean_portfolio() : This function cleans Portfolio Dataframe by
+- clean_profile(): This function cleans Profile Dataframe by
+- clean_transcript(): This Function cleans Transcript Dataframe by
+4. Exploring Cleaned Data by .head() and .describe() methods
+5. Transforming Data by
+6. Plotting Data
+7. Creating a User Matrix
+8. Making Train & Test Matrix
+9. Evaluating our model by tuning latent_feature parameter.
+10. Getting offers for a specific customer
+11. Getting top selling offers
+
+## Data Modeling
+Our main goal for modeling data is to search for the record pattern: offer received, offer viewed, offer completed. We can achieve our goal by looping through the offers and then the users, getting all the records of that particular user and that particular offer. We loop through all the records and if there is any pattern matched, we add one to the specific location in the user-item matrix. Otherwise, we put zero to that place. If the user never received that offer, we leave it as NaN. After a long computing time, we get a spare matrix with some NaN and many zero in it. We can finally construct the information we need to further analyze.
+
+
+## Algorithm
+We will use FunkSVD Algorith in our model to split the matrix into the user matrix, latent feature matrix and offer matrix. We are using FunkSVD because there are missing values inside the matrix and normal SVD just doesn’t work.
+
+## Metrics
+We will evaluate our model by calculating mean square error. We will tune our parameters by using values of latent feature as 15, 20and 30 to choose which one is best. We used 150 iterations for each model and used learning rate at 0.005. For 15 latent value, we have MSE = 0.02422, for 20 latent feature, we have MSE = 0.021273, for 30 latent feature, we have MSE = 0.014342 achieving lowest MSE.
+
+## Evaluation
+We tuned our model by changing value of latent_features between 15,20 & 30. After running our models, we got following observations.
+- latent_feature = 15 gives worst MSE = 0.314692 and best MSE = 0.02422.
+- latent_feature =20 gives worst MSE = 0.329035 and best MSE = 0.021273.
+- latent_feature =30 gives worst MSE = 0.377391 and best MSE =0.014342.
+
+## Improvements
+We used FunckSVD algorithm but this was not helpful in Cold Start Scenario ie for making recommendations for new users. Moreover, each user recieves multiple offers hence splitting between training and testing can be improved.
 
 ## Results
 We got following results from this data
