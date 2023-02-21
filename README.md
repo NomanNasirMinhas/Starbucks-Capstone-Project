@@ -1,4 +1,4 @@
-# Udacity Starbucks-Capstone-Project
+# Starbucks-Capstone-Project
 
 ## Introduction
 Data Science is driving today’s Business’s strategic planning. Advent of Artificial Intelligence and Data Science is being widely used by multi-national companies to get insights about business intelligence. In this article we will use data provided by Starbucks to analyze how customers have behaved over the years to different offers and other such details.
